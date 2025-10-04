@@ -1,348 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.8/iconfont/material-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <title>YouTube</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>السيرة الذاتية</title>
+  <!-- خط جميل عربي مع بدائل محلية -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0e14;
+      --card: #121723;
+      --muted: #8a94a6;
+      --text: #e7ecf2;
+      --brand: #6aa6ff;
+      --accent: #00d1b2;
+      --chip: #1b2232;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background: radial-gradient(1200px 800px at 100% -10%, rgba(38,95,255,.18), transparent 50%),
+      radial-gradient(900px 600px at -10% 110%, rgba(0,209,178,.18), transparent 50%), var(--bg);
+      font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Naskh Arabic", Arial, sans-serif;
+      color:var(--text);
+      line-height:1.6;
+    }
+    .container{
+      max-width: 1000px; margin: 48px auto; padding: 0 20px;
+    }
+    .resume{
+      display:grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start;
+    }
+    .card{
+      background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius: 24px; box-shadow: var(--shadow);
+    }
+    .sidebar{ position: sticky; top:24px; padding:24px }
+    .avatar{
+      width: 100%; aspect-ratio: 1/1; border-radius: 20px; object-fit: cover; display:block;
+      border: 2px solid rgba(255,255,255,.12);
+    }
+    .name{
+      font-size: 28px; font-weight: 800; margin: 16px 0 6px;
+    }
+    .role{ color:var(--muted); font-weight:600; margin-bottom: 14px }
+    .contact{
+      display:grid; gap:10px; margin:16px 0 10px;
+    }
+    .contact a{ color:inherit; text-decoration:none }
+    .contact-item{ display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background:var(--chip); }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
+    .chip{ padding:8px 12px; border-radius:999px; background:var(--chip); font-weight:600; font-size:13px }
+    .main{ padding:24px }
+    .header{
+      background: linear-gradient(135deg, rgba(106,166,255,.15), rgba(0,209,178,.12));
+      border:1px dashed rgba(255,255,255,.15); padding:18px 18px; border-radius:18px; margin-bottom:14px;
+    }
+    h2{ font-size:20px; margin:18px 0 10px; display:flex; align-items:center; gap:10px }
+    h2 .line{ flex:1; height:2px; background: linear-gradient(90deg, var(--brand), transparent) }
+    .section{ margin-top: 18px }
+    .timeline{ display:grid; gap:14px }
+    .item{ padding:16px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background: rgba(255,255,255,.02) }
+    .item-header{ display:flex; gap:8px; justify-content:space-between; align-items:center; flex-wrap:wrap }
+    .item-title{ font-weight:800 }
+    .item-sub{ color:var(--muted); font-weight:600 }
+    .item ul{ margin:8px 0 0 0; padding-inline-start: 20px }
+
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px }
+    .skills{ display:grid; gap:10px }
+    .skillbar{ background:var(--chip); border-radius:12px; overflow:hidden; height:10px }
+    .skillbar > span{ display:block; height:100%; background: linear-gradient(90deg, var(--brand), var(--accent)); width:0 }
+    .skillname{ display:flex; justify-content:space-between; font-weight:700; font-size:14px }
+
+    /* طباعة نظيفة */
+    @media print{
+      body{ background:white; }
+      .card{ box-shadow:none }
+      .sidebar{ position: static }
+      .contact-item{ background:#f2f4f7; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+      .chip{ background:#eef2f7 }
+      .header{ background:#e8f0ff }
+    }
+
+    /* استجابة للشاشات الصغيرة */
+    @media (max-width: 820px){
+      .resume{ grid-template-columns: 1fr; }
+      .sidebar{ position: static }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="left-section">
-      <i class="material-icons logo">menu</i>
-      <img src="youtube-logo.png">
-    </div>
-    <div class="mid-section">
-      <form action="">
-        <input type="text" placeholder="Search">
-        <button> <i class="material-icons">search</i></button>
-      </form>
-      <i class="material-icons mic">mic</i>
-    </div>
-    <div class="right-section">
-      <a href=""><i class="material-icons">video_call</i></a>
-      <a href=""><i class="material-icons">apps</i></a>
-      <a href=""><i class="material-icons">notifications</i></a>
-      <a href=""><i class="material-icons">account_circle</i></a>
+  <div class="container">
+    <div class="resume">
+      <!-- الشريط الجانبي -->
+      <aside class="card sidebar">
+        <img src="aaaa.jpg" alt="صورتك الشخصية" class="avatar" />
+        <h1 class="name">أحمد صادق احمد حسن الصراري</h1>
+        <div class="role">طالب جامعي — نظم معلومات إدارية</div>
 
-    </div>
-  </header>
-  <div class="content-area">
-    <aside>
-      <nav>
-        <a href="" class="nav-link active">
-          <i class="material-icons">home</i>
-          <span id="active-span">Home</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">explore</i>
-          <span>Explore</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">subscriptions</i>
-          <span>Subscriptions</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">ondemand_video</i>
-          <span>Originals</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">play_circle_outline</i>
-          <span>Youtube Music</span>
-        </a>
-        <hr>
-        <a href="" class="nav-link">
-          <i class="material-icons">video_library</i>
-          <span>Library</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">history</i>
-          <span>History</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">smart_display</i>
-          <span>Your Videos</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">watch_later</i>
-          <span>Watch later</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">download</i>
-          <span>Downloads</span>
-        </a>
-        <a href="" class="nav-link">
-          <i class="material-icons">thumb_up</i>
-          <span>Liked videos</span>
-        </a>
-        <hr>
-        <p>
-          Subscriptions
-        </p>
-        <a href="" class="nav-link">
-          <img src="ahmed.jpg" class="channel-img">
-          <span>Ahmed Alsrary</span>
-        </a>
-        <a href="" class="nav-link">
-          <img src="ahmed.jpg" class="channel-img">
-          <span>Ahmed Alsrary</span>
-        </a>
-        <a href="" class="nav-link">
-          <img src="assd.jpg" class="channel-img">
-          <span>Ahmed Alsrary</span>
-        </a>
-        <a href="" class="nav-link">
-          <img src="ahmed.jpg" class="channel-img">
-          <span>Ahmed Alsrary</span>
-        </a>
-        <a href="" class="nav-link">
-          <img src="assd.jpg" class="channel-img">
-          <span>Ahmed Alsrary</span>
-        </a>
-      </nav>
-    </aside>
+        <div class="contact">
+          <div class="contact-item">📍 اليمن، إب، القاعدة</div>
+          <div class="contact-item">📞778813720</div>
+          <div class="contact-item">✉️ alsrary288@gmail.com</div>
+          <div class="contact-item"><a href="https://github.com/alsrary288/my_website.git" target="_blank">💻 github.com/alsrary288</a></div>
+          
+        </div>
 
-    <main>
-      <div class="videos-container">
-        <div class="video">
-          <div class="thumbnail">
-                      <a href="cristiano.mp4">
-            <img src="ahki.jpg" />
+        <h2>المهارات <span class="line"></span></h2>
+        <div class="skills">
+          <div>
+            <div class="skillname"><span>C++</span><span>ممتاز</span></div>
+            <div class="skillbar"><span style="width: 98%"></span></div>
+          </div>
+          <div>
+            <div class="skillname"><span>Java</span><span>ممتاز</span></div>
+            <div class="skillbar"><span style="width: 99%"></span></div>
+          </div>
+          <div>
+            <div class="skillname"><span>HTML/CSS</span><span>ممتاز</span></div>
+            <div class="skillbar"><span style="width: 97%"></span></div>
+          </div>
+          <div>
+            <div class="skillname"><span>#C</span><span>ممتاز</span></div>
+            <div class="skillbar"><span style="width: 95%"></span></div>
+          </div>
         </div>
-        <div class="video-details">
-          <div class="creator-img">
-            <img src="ahmed.jpg" />
+
+        <h2>اللغات <span class="line"></span></h2>
+        <div class="chips">
+          <span class="chip">العربية — أم</span>
+          <span class="chip">الإنجليزية — جيد</span>
         </div>
-        <div class="title">
-          <a href="cristiano.mp4" class="video-title">
-            هو في مثلك؟
-          </a>
-          <a href="" class="video-creator">
-            Ahmed Alsrary
-          </a>
-          <span>120M Views • 3 Months Ago</span>
+
+        <h2>الهوايات <span class="line"></span></h2>
+        <div class="chips">
+          <span class="chip">الذكاء الاصطناعي</span>
+          <span class="chip">البرمجة</span>
+          <span class="chip">تطوير الويب</span>
         </div>
-      </div>
-    </div>
-    <div class="video">
-      <div class="thumbnail">
-        <img src="video8.jpeg" />
-    </div>
-    <div class="video-details">
-      <div class="creator-img">
-        <img src="ahmed.jpg" />
-    </div>
-    <div class="title">
-      <a href="" class="video-title">
-        365 days without facebook facebook facebook facebook facebook facebook facebook facebook facebook facebook facebook facebook facebook facebook
-      </a>
-      <a href="" class="video-creator">
-        Ahmed Alsrary
-      </a>
-      <span>10M Views • 4 Months Ago</span>
+      </aside>
+
+      <!-- المحتوى الرئيسي -->
+      <main class="card main">
+        <div class="header">
+          أنا طالب في السنة الثالثة بجامعة الحكمة — شغوف بتطوير الويب وتحليل البيانات. أبحث عن فرصة تدريب تعاوني (Internship) لاكتساب خبرة عملية وتطبيق ما تعلمته في مشاريع حقيقية.
+        </div>
+
+        <section class="section">
+          <h2>التعليم <span class="line"></span></h2>
+          <div class="timeline">
+            <div class="item">
+              <div class="item-header">
+                <div>
+                  <div class="item-title">بكالوريوس نظم معلومات إدارية</div>
+                  <div class="item-sub">جامعة الحكمة — متوقع التخرج: 2027</div>
+                </div>
+                <div class="item-sub"></div>
+              </div>
+              <ul>
+                <li>مقررات بارزة: هياكل بيانات، قواعد بيانات، هندسة البرمجيات، شبكات.</li>
+              </ul>
+              <br>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>المشاريع الأكاديمية <span class="line"></span></h2>
+          <div class="grid-2">
+            <div class="item">
+              <div class="item-title">واجهة يوتيوب</div>
+              <div class="item-sub">HTML, CSS, JS — 2025</div>
+              <ul>
+                <li>بنيت واجهة مستخدم تشبه يوتيوب لتقديم تجربة مشاهدة فيديوهات بديهية وسلسة.</li>
+              </ul>
+            </div>
+            <div class="item">
+              <div class="item-title">لعبة Snake</div>
+              <div class="item-sub">Java— 2024</div>
+              <ul>
+                <li>بنيت لعبة الثعبان بلغة الجافا .</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        
+
+        
+
+        <section class="section">
+          <h2>الاهتمامات التقنية <span class="line"></span></h2>
+          <div class="chips">
+            <span class="chip">Front‑End</span>
+            <span class="chip">UI/UX</span>
+            <span class="chip">قواعد البيانات</span>
+            <span class="chip">التعلم الآلي</span>
+          </div>
+        </section>
+      </main>
     </div>
   </div>
-</div>
-<div class="video">
-  <div class="thumbnail">
-      <a href="ali.mp4">
-    <img src="mbape.png" />
-</div>
-<div class="video-details">
-  <div class="creator-img">
-    <img src="ahmed.jpg" />
-</div>
-<div class="title">
-  <a href="mbbape.mp4" class="video-title">
-    مهارات كليان امبابي
-  </a>
-  <a href="" class="video-creator">
-    Ahmed Alsrary
-  </a>
-  <span>133M Views • 2 Days Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-  <a href="realmadred.mp4">
-<img src="ahki.jpg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="realmadred.mp4" class="video-title">
-نشيد ريال مدريد
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>237M Views • 7 Months Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-  <a href="shoq.mp4">
-<img src="hob.png" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="shoq.mp4" class="video-title">عن حب الدون 😍
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>51M Views • 7 Days Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-  <a href="ali.mp4">
-<img src="ahki.jpg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="smi.mp4" class="video-title">العشق كريستيانو رونالدو♥♥
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>40M Views • 1 Months Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-  <a href="baba.mp4">
-<img src="video3.jpeg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="baba.mp4" class="video-title">أجمل ماقيل عن الأب
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>24M Views • 2 Years Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-  <a href="htmlcss.mp4">
-<img src="moca.jpg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="htmlcss.mp4" class="video-title">
-شرح مبسط ل HTML, CSS
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>10M Views • 3 Months Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-<img src="video3.jpeg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="" class="video-title">
-مين دا اللي فاكر نفسه Influencer
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>10M Views • 3 Months Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-<img src="video3.jpeg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="" class="video-title">
-مين دا اللي فاكر نفسه Influencer
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>10M Views • 3 Months Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-<img src="video3.jpeg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="" class="video-title">
-مين دا اللي فاكر نفسه Influencer
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>10M Views • 3 Months Ago</span>
-</div>
-</div>
-</div>
-<div class="video">
-<div class="thumbnail">
-  <a href="ali.mp4" target="_blank">
-<img src="ahki.jpg" />
-</div>
-<div class="video-details">
-<div class="creator-img">
-<img src="ahmed.jpg" />
-</div>
-<div class="title">
-<a href="ali.mp4" class="video-title">
-احكي ياتاريخ علينا 
-</a>
-<a href="" class="video-creator">
-Ahmed Alsrary
-</a>
-<span>164M Views • 1 Years Ago</span>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-
 </body>
 </html>
